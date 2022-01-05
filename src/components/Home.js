@@ -1,5 +1,10 @@
 import React from "react";
+import Media from "./Media";
 
-export default function Home() {
-  return <div> hello from Home</div>;
+export default function Home({ data }) {
+  return (
+    <div>
+      <Media data={data} />
+    </div>
+  );
 }
