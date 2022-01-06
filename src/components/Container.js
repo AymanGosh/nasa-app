@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./Home";
 import Search from "./Search";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-export default function Container({ data }) {
+export default function Container({ data, changeData }) {
   return (
     <div>
       <Route path="/" exact render={() => <Home data={data} />} />
