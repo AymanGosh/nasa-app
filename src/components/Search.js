@@ -2,8 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Media from "./Media";
+import MediaCard from "./MediaCard";
 
-export default function Search() {
+export default function Search({ addToFavourite }) {
   let [searchInput, setSearchInput] = useState("");
   let [searchData, setSearchData] = useState([]);
 
@@ -46,7 +47,12 @@ export default function Search() {
       />
       <button onClick={handelSearch}>Search</button>
       {searchData.map((d, index) => (
-        <Media key={index} data={d} />
+        <MediaCard
+          key={index}
+          data={d}
+          CompName="SearchComp"
+          addToFavourite={addToFavourite}
+        />
       ))}
     </div>
   );

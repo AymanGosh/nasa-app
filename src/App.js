@@ -7,6 +7,7 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState({});
+  const [favouriteMediaCards, setFavouriteMediaCards] = useState([]);
 
   useEffect(async () => {
     const response = await axios.get(
@@ -15,12 +16,22 @@ function App() {
     setData(response.data);
   }, []);
 
+  let addToFavourite = (data) => {
+    let tempArr = [...favouriteMediaCards];
+    tempArr.push(data);
+    setFavouriteMediaCards(tempArr);
+  };
+
   return (
     <div>
       <Router>
         <div>
           <NavBar />
-          <Container data={data} />
+          <Container
+            data={data}
+            favouriteMediaCards={favouriteMediaCards}
+            addToFavourite={addToFavourite}
+          />
         </div>
       </Router>
     </div>
