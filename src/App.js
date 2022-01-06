@@ -16,9 +16,14 @@ function App() {
     setData(response.data);
   }, []);
 
-  let addToFavourite = (data) => {
+  let addToFavourite = (oneData) => {
     let tempArr = [...favouriteMediaCards];
-    tempArr.push(data);
+    tempArr.push(oneData);
+    setFavouriteMediaCards(tempArr);
+  };
+  let removeFromFavourite = (oneData) => {
+    let tempArr = [...favouriteMediaCards];
+    tempArr = tempArr.filter((d) => oneData.title != d.title);
     setFavouriteMediaCards(tempArr);
   };
 
@@ -31,6 +36,7 @@ function App() {
             data={data}
             favouriteMediaCards={favouriteMediaCards}
             addToFavourite={addToFavourite}
+            removeFromFavourite={removeFromFavourite}
           />
         </div>
       </Router>

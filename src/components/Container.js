@@ -8,6 +8,7 @@ export default function Container({
   changeData,
   addToFavourite,
   favouriteMediaCards,
+  removeFromFavourite,
 }) {
   return (
     <div>
@@ -15,7 +16,12 @@ export default function Container({
       <Route
         path="/Search"
         exact
-        render={() => <Search addToFavourite={addToFavourite} />}
+        render={() => (
+          <Search
+            addToFavourite={addToFavourite}
+            removeFromFavourite={removeFromFavourite}
+          />
+        )}
       />
       <Route
         path="/Favourites"
@@ -24,6 +30,7 @@ export default function Container({
           <Favourites
             favouriteMediaCards={favouriteMediaCards}
             addToFavourite={addToFavourite}
+            removeFromFavourite={removeFromFavourite}
           />
         )}
       />

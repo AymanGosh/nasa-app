@@ -3,17 +3,18 @@ import ReactPlayer from "react-player";
 import { useState, useEffect } from "react";
 import Favourites from "./Favourites";
 
-export default function MediaCard({ data, CompName, addToFavourite }) {
+export default function MediaCard({
+  data,
+  CompName,
+  addToFavourite,
+  removeFromFavourite,
+}) {
   const [isLiked, setIsLiked] = useState(false);
 
   let handelClick = () => {
     console.log("I'M Clicked");
   };
 
-  let removefromFavourite = () => {
-    console.log(data);
-    setIsLiked(false);
-  };
   return (
     <div>
       <div>
@@ -36,7 +37,14 @@ export default function MediaCard({ data, CompName, addToFavourite }) {
           LIKE
         </button>
       ) : (
-        <button onClick={removefromFavourite}>disLIKE</button>
+        <button
+          onClick={() => {
+            setIsLiked(false);
+            removeFromFavourite(data);
+          }}
+        >
+          disLIKE
+        </button>
       )}
       <hr />
     </div>
