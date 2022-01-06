@@ -14,17 +14,32 @@ function App() {
       "https://api.nasa.gov/planetary/apod?api_key=lvSRKG0MtbdmjGSdI5odL2Za6aOyR7KUz0jhDrxu"
     );
     setData(response.data);
+    getDataFromDB();
   }, []);
 
+  let saveToDB = async (oneData) => {
+    const response = await axios.post("http://localhost:8888/galaxy", oneData);
+  };
+
+  let getDataFromDB = async () => {
+    const response = await axios.get("http://localhost:8888/galaxies");
+    setFavouriteMediaCards(response.data);
+  };
+
+  let deleteOneFromDB = async (title) => {
+    await axios.delete(`http://localhost:8888/galaxy/${title}`);
+  };
   let addToFavourite = (oneData) => {
     let tempArr = [...favouriteMediaCards];
     tempArr.push(oneData);
     setFavouriteMediaCards(tempArr);
+    saveToDB(oneData);
   };
   let removeFromFavourite = (oneData) => {
     let tempArr = [...favouriteMediaCards];
     tempArr = tempArr.filter((d) => oneData.title != d.title);
     setFavouriteMediaCards(tempArr);
+    deleteOneFromDB(oneData.title);
   };
 
   return (
